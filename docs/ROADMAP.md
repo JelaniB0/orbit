@@ -4,7 +4,7 @@ Orbit introduces technologies gradually. Each phase should have a working,
 tested outcome before the next begins, and future-phase directories should not be
 created as placeholders.
 
-## Phase 0: Architecture and project foundations — current
+## Phase 0: Architecture and project foundations — complete
 
 - Define domain vocabulary, system boundaries, and failure assumptions.
 - Document the intended run state machine before implementing it.
@@ -14,7 +14,7 @@ created as placeholders.
 **Exit condition:** the architecture, roadmap, and initial decisions are understood
 and accepted. There is no application code in this phase.
 
-## Phase 1: Single-process API
+## Phase 1: Single-process API — current
 
 - Establish the Python project and development toolchain.
 - Implement framework-independent job and run domain behavior.
@@ -22,6 +22,10 @@ and accepted. There is no application code in this phase.
 - Support a small set of safe demonstration task types.
 - Define validation, HTTP errors, state transitions, and idempotent submission.
 - Add unit and API tests.
+
+The first Phase 1 slice creates and reads queued run records only. Demonstration
+task execution and idempotent submission remain later Phase 1 increments rather
+than being introduced before their behavior is designed.
 
 **Learning focus:** Python packaging, typing, dependency boundaries, HTTP API
 semantics, validation, and testing.
@@ -145,4 +149,3 @@ services, operational cost, backup, and recovery.
 Progress is evidence-driven rather than calendar-driven. A technology enters Orbit
 only when its phase begins and its purpose, operational cost, and simpler
 alternatives have been explained.
-

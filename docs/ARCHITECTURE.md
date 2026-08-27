@@ -3,8 +3,8 @@
 ## Status and scope
 
 This document describes Orbit's intended architecture. Orbit is currently in
-Phase 0; the services and infrastructure below are architectural targets, not a
-claim that they have been implemented.
+Phase 1. Only the single-process API and in-memory repository are implemented; the
+remaining services and infrastructure below are architectural targets.
 
 Orbit begins as a modular monolith. Domain boundaries will be represented in code
 before they become independently deployable services. Components should be split
@@ -91,8 +91,10 @@ HTTP is appropriate when a caller needs an immediate control-plane response:
 - MCP-to-API calls; and
 - health and readiness probes.
 
-A submission should return after durable acceptance, normally as `202 Accepted`
-with a run identifier, rather than waiting for execution. Internal synchronous
+A submission will eventually return after durable acceptance, normally as
+`202 Accepted` with a run identifier, rather than waiting for execution. During
+the in-memory Phase 1 API, creating the run resource returns `201 Created`.
+Internal synchronous
 chains through the scheduler and worker are avoided because they couple user-facing
 availability and latency to background execution.
 
@@ -218,4 +220,3 @@ Orbit must work through its simpler deployment model before adopting the next on
 
 The repository gains directories and deployment assets only when their roadmap
 phase begins.
-
